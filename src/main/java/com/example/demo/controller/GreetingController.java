@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.UserService;
+import com.example.demo.domain.Person;
 import lombok.Getter;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,8 +23,8 @@ public class GreetingController {
 
     @RequestMapping("")
     public @ResponseBody
-    String index() {
-        return "index";
+    Person index() {
+        return new Person("index");
     }
 
     @RequestMapping("/a/b")

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <bean id="user" class="com.example.demo.bean.User">
+        <!-- 通过constructor这个节点来指定构造函数的参数类型、名称、第几个 -->
+        <constructor-arg index="0" name="id" type="java.lang.String" value="1"/>
+        <constructor-arg index="1" name="username" type="java.lang.String" value="oscar"/>
+    </bean>
+    <!--<bean id="userDao" class="com.example.demo.UserDao"/>-->
+    <!--<bean id="userService" class="com.example.demo.UserService"/>-->
+    <!--<bean id="userAction" class="com.example.demo.UserAction"/>-->
+</beans>

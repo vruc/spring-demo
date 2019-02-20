@@ -1,11 +1,13 @@
 package com.example.demo.controller;
 
+import com.example.demo.UserService;
 import lombok.Getter;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.annotation.Resource;
 import java.util.Calendar;
 import java.util.concurrent.atomic.AtomicLong;
 
@@ -30,8 +32,12 @@ public class GreetingController {
     @RequestMapping("/greeting")
     @ResponseBody
     public Greeting greeting(@RequestParam(value = "name", defaultValue = "Oscar") String name) {
+        userService.save();
         return new Greeting(counter.incrementAndGet(), String.format(template, name));
     }
+
+    @Resource(name = "userService")
+    private UserService userService;
 
     public class Greeting {
 

@@ -12,9 +12,15 @@ import java.util.Calendar;
 import java.util.concurrent.atomic.AtomicLong;
 
 @Controller
+@RequestMapping("/greet")
 public class GreetingController {
 
-    @RequestMapping("/")
+    private static final String template = "Hello, %s!";
+    private final AtomicLong counter = new AtomicLong();
+    @Resource(name = "userService")
+    private UserService userService;
+
+    @RequestMapping("")
     public @ResponseBody
     String index() {
         return "index";
@@ -26,18 +32,12 @@ public class GreetingController {
         return "/a/b";
     }
 
-    private static final String template = "Hello, %s!";
-    private final AtomicLong counter = new AtomicLong();
-
-    @RequestMapping("/greeting")
+    @RequestMapping("/sayHi")
     @ResponseBody
     public Greeting greeting(@RequestParam(value = "name", defaultValue = "Oscar") String name) {
         userService.save();
         return new Greeting(counter.incrementAndGet(), String.format(template, name));
     }
-
-    @Resource(name = "userService")
-    private UserService userService;
 
     public class Greeting {
 

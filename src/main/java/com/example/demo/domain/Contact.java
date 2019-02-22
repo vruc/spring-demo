@@ -6,30 +6,27 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
-@Entity
-@SqlResultSetMapping(
-        name = "conatctMapping",
-        entities = @EntityResult(
-                entityClass = Contact.class,
-                fields = {
-                        @FieldResult(name = "name", column = "name"),
-                        @FieldResult(name = "phone", column = "phone"),
-                        @FieldResult(name = "mail", column = "mail")})
-)
-@NamedStoredProcedureQueries({
-        @NamedStoredProcedureQuery(
-                name = "getContactsLikeName",
-                procedureName = "proc_get_contacts_like_name",
-                resultClasses = {Contact.class},
-                parameters = {
-                        @StoredProcedureParameter(
-                                mode = ParameterMode.IN,
-                                name = "name",
-                                type = String.class)
-                }
-        )
-})
+
+/**
+ * 这是一个实体对象。
+ *
+ * 对象在映射数据库列时，可以通过在属性上分别配置@Column
+ *
+ */
+
 @Data
+@Entity
+
+//@SqlResultSetMapping(
+//        name = "conatctMapping",
+//        entities = @EntityResult(
+//                entityClass = Contact.class,
+//                fields = {
+//                        @FieldResult(name = "name", column = "name"),
+//                        @FieldResult(name = "phone", column = "phone"),
+//                        @FieldResult(name = "mail", column = "mail")})
+//)
+
 @AllArgsConstructor
 @NoArgsConstructor
 public class Contact {
@@ -39,13 +36,13 @@ public class Contact {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(name = "name")
+//    @Column(name = "name")
     private String name;
 
-    @Column(name = "phone")
+//    @Column(name = "phone")
     private String phone;
 
-    @Column(name = "mail")
+//    @Column(name = "mail")
     private String mail;
 
     public Contact(String name, String phone, String mail) {

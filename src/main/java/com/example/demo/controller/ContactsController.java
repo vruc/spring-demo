@@ -24,7 +24,9 @@ public class ContactsController {
     @RequestMapping(value = "/byName", method = RequestMethod.GET)
     @ResponseBody
     public Contact findContactByName(@RequestParam(value = "name", defaultValue = "") String name) {
-        return contactsRepository.findByName(name);
+        Contact contact = contactsRepository.findByName(name);
+        System.out.println(contact);
+        return contact;
     }
 
     @RequestMapping(value = "/byNameLike", method = RequestMethod.GET)
